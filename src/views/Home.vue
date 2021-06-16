@@ -1,18 +1,38 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <v-container>
+        <v-row justify="center" justify-md="start">
+          <v-col class="col-12 col-sm-5 col-md-4" 
+            v-for="(dogWalker, index) in dogWalkers" :key="index">
+            <dog-walker-card :dogwalker="dogWalker" />
+          </v-col>
+        </v-row>
+    </v-container>
   </div>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  import DogWalkerCard from '../components/DogWalkerCard.vue';
+  import {getDogWalkers} from '../service/DogWalkerService.js';  
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  export default {
+    name: 'Home',
+
+    data () {
+      return {
+        dogWalkers: null,
+      }
+    },
+
+    beforeCreate() {
+      getDogWalkers().then(res => this.dogWalkers = res);
+    },
+
+    components: {
+      DogWalkerCard
+    },
+
+
   }
-}
 </script>
