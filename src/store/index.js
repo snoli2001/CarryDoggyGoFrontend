@@ -5,11 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loggedIn: false
+    loggedIn: sessionStorage.getItem('autenticado')
   },
   mutations: {
     loggedIn(state) {
-      state.loggedIn = true
+      sessionStorage.setItem('autenticado', true);
+      state.loggedIn = true;
     },
     loggedOut(state) {
       state.loggedIn = false

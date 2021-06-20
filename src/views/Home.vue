@@ -21,7 +21,7 @@
 
     data () {
       return {
-        dogWalkers: null,
+        dogWalkers: Number,
       }
     },
 

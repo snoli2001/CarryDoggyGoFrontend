@@ -56,7 +56,9 @@ import { mapActions } from 'vuex'
 
         methods: {
             logOut(event){
+                sessionStorage.clear();
                 this.LogOut();
+                localStorage.clear
                 this.$router.push('/login');
             },
             ...mapActions([

@@ -68,7 +68,6 @@ import { mapActions } from 'vuex'
 </script>
 
 <style>
-
     .bg {
         width: 100%;
         height: 100vh;

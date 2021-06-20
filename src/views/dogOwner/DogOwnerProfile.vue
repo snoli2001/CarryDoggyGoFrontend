@@ -8,7 +8,7 @@
                             color="indigo"
                             size="100"
                         >
-                            <span class="white--text text-h5">{{dogOwner.name[0].toUpperCase()}}{{dogOwner.lastName[0]}}</span>
+                            <span class="white--text text-h5">{{dogOwner.name[0].toUpperCase()}}{{dogOwner.lastName[0].toUpperCase()}}</span>
                         </v-avatar>
                         <v-card-title class="mt-2">{{dogOwner.name | capitalize}} {{dogOwner.lastName}}</v-card-title>
                     </v-card-title>
@@ -51,7 +51,8 @@
                                 <v-list-item-avatar
                                 size="90"
                                 >
-                                    <img src="https://images.pexels.com/photos/351406/pexels-photo-351406.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="">
+                                    <v-img src="../../assets/img/dogExampleImage.jpg" alt="dogImage">
+                                    </v-img>
                                 </v-list-item-avatar>
 
                                 <v-card-title class="mr-5 mt-n5" >{{dog.name}}</v-card-title>
@@ -82,32 +83,81 @@
                     >
                         <v-card>
                             <v-card-title class="text-h5">
-                            Use Google's location service?
+                            Agregar Perro
                             </v-card-title>
 
-                            <v-card-text>
-                            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-                            </v-card-text>
+                            <v-form v-model="valid">
+                                <v-container>
+                                <v-row>
+                                    <v-col
+                                    cols="12"
+                                    md="4"
+                                    >
+                                    <v-text-field
+                                        v-model="dogName"
+                                        :rules="dogNameRules"
+                                        label="Nombre del perro"
+                                        required
+                                    ></v-text-field>
+                                    </v-col>
 
-                            <v-card-actions>
-                            <v-spacer></v-spacer>
+                                    <v-col
+                                    cols="12"
+                                    md="4"
+                                    >
+                                    <v-text-field
+                                        v-model="dogRace"
+                                        :rules="dogRaceRules"
+                                        label="Raza"
+                                        required
+                                    ></v-text-field>
+                                    </v-col>
 
-                            <v-btn
-                                color="green darken-1"
-                                text
-                                @click="dialog = false"
-                            >
-                                Disagree
-                            </v-btn>
+                                    <v-col
+                                    cols="12"
+                                    md="4"
+                                    >
+                                        <v-text-field
+                                            v-model="diseases"
+                                            label="Enfermedades"
+                                            required
+                                        ></v-text-field>
+                                    </v-col>
+                                     <v-col
+                                        cols="12"
+                                        md="4"
+                                        >
+                                        <v-text-field
+                                            v-model="description"
+                                            label="Descripcion"
+                                            required
+                                        ></v-text-field>
+                                    </v-col>
+                                                                      <v-col
+                                        cols="12"
+                                        md="4"
+                                        >
+                                        <v-text-field
+                                            v-model="medicalInformation"
+                                            label="Informacion Medica"
+                                            required
+                                        ></v-text-field>
+                                    </v-col>
+                                </v-row>
+                                </v-container>
 
-                            <v-btn
-                                color="green darken-1"
-                                text
-                                @click="dialog = false"
-                            >
-                                Agree
-                            </v-btn>
-                            </v-card-actions>
+                                <v-spacer></v-spacer>
+
+                                <v-btn
+                                    color="green darken-1"
+                                    text
+                                    @click="createDog"
+                                >
+                                    Crear
+                                </v-btn>
+
+                            </v-form>
+
                         </v-card>
                     </v-dialog>
                 </v-card>
@@ -118,27 +168,58 @@
 
 <script>
   import {getDogOwnerById} from '../../service/DogOwnerService.js';  
-  import {getDogsByDogOwnerId} from '../../service/DogsService';  
+  import {getDogsByDogOwnerId, createDog} from '../../service/DogsService';  
 
     export default {
+
+
         data(){
             return {
                 dogOwner: Object,
                 dogs: Array | String,
+                valid: false,
                 dialog: false,
+                dogName: '',
+                dogRace: '',
+                description: '',
+                diseases: '',
+                medicalInformation: '',
+                dogNameRules: [
+                    v => !!v || 'El nombre es requerido',
+                    v => v.length >= 2 || 'El nombre deber tener 2 caracteres como mínimo'
+                ],
+                dogRaceRules:[
+                    v => !!v || 'La raza es requerida, si su perro no tiene raza ponga mestizo',
+                    v => v.length >= 2 || 'La raza deber tener 2 caracteres como mínimo'
+                ],
             }
         },
 
+        
         beforeCreate() {
              getDogOwnerById(2).then(res => this.dogOwner = res);
              getDogsByDogOwnerId(2).then(res => this.dogs  = res);
         },
-        filters: {
+
+        methods:{
+            createDog() {
+                let dog = {
+                    name: this.dogName,
+                    race : this.dogRace,
+                    description : this.description,
+                    medicalInformation : this.medicalInformation,
+                };
+                createDog(2, dog).then(resp => console.log(resp));
+                window.location.reload();
+            }
+        },
+
+       filters: {
             capitalize: function (value) {
                 if (!value) return ''
                 value = value.toString()
                 return value.charAt(0).toUpperCase() + value.slice(1)
-        }
-}
+            }
+        },
     }
 </script>
