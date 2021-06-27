@@ -42,6 +42,21 @@ const routes = [
     component: DogWalkerProfile,
     meta: { requiresAuth: true }
   },
+  
+// By Alejo
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: () => import('../views/dogOwner/DogOwnerNotifications.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/notification/:id',
+    name: 'DogOwnerNotification',
+    component: () => import('../components/DogOwnerNotificationDescription.vue'),
+    meta: { requiresAuth: true }
+  },
 
 ]
 
