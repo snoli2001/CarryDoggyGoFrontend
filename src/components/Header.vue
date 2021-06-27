@@ -28,7 +28,6 @@
                 <v-btn 
                     class="ma-2"
                     color="red lighten-1"
-                    flat
                     v-on:click ="notifications()"
                 >
                 <v-icon>mdi-bell</v-icon>
@@ -78,14 +77,8 @@ import { mapActions } from 'vuex'
             ]),
             //Metodo para que funcione mi boton notificacion by Alejo
             notifications(event){
-                sessionStorage.clear();
-                this.Notifications();
-                localStorage.clear
                 this.$router.push('/notifications');
             },
-            ...mapActions([
-                'Notifications'
-            ]),
             
         }
     }

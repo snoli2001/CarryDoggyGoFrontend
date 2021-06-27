@@ -12,21 +12,21 @@
       >
         mdi-message
       </v-icon>
-      <span class="text-h6 font-weight-light">Notificacion {{notifications.dogOwnerNotificationId}}:</span>
+      <span class="text-h6 font-weight-light">Notificacion {{id}}:</span>
     </v-card-title>
 
     <v-card-text class="text-h5 font-weight-bold">
-      {{notifications.description}}
+      {{not.description}}
     </v-card-text>
 
     <v-card-actions>
       <v-list-item class="grow">
         <v-list-item-avatar color="grey darken-3">
-          <v-icon> mdi-account</v-icon>
+          <v-icon> mdi-calendar-month-outline</v-icon>
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>For You</v-list-item-title>
+          <v-list-item-title>{{not.createdAt|formatDate}}</v-list-item-title>
         </v-list-item-content>
 
       </v-list-item>
@@ -36,19 +36,35 @@
 
 <script>
 import {GetDogOwnerNotification} from '../service/DogOwnerNotificationService.js';  
+import moment from "moment"
 
     export default {
         data() {
             return {
-             notifications:Object
-
+             notifications:[Object],
+             id: this.$route.params.id,
+             not:Object
             }
         },
 
-         beforeCreate() {
-             GetDogOwnerNotification(2).then(res => this.notifications = res);
+        filters:{
+            formatDate:function(value) {
+                    if (value) {
+                      return moment(String(value)).format('MM/DD/YYYY hh:mm')
+                    }
+           }        
         },
 
+        beforeCreate() {
+            GetDogOwnerNotification(2).then(res => { 
+              this.notifications = res;
+              const notificationid = this.id; 
+              console.log(notificationid);
+              this.not = res.filter(not => not.dogOwnerNotificationId == notificationid)[0];
+            });
+        },
+
+      
     }
 </script>
 
