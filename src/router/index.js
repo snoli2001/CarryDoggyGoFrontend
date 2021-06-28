@@ -2,7 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 import DogWalkerProfile from '../components/DogWalkerProfile.vue'
+import DogOwnerFormRegister from '../components/DogOwnerFormRegister.vue'
+import DogWalkerFormRegister from '../components/DogWalkerFormRegister.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -56,6 +59,24 @@ const routes = [
     name: 'DogOwnerNotification',
     component: () => import('../components/DogOwnerNotificationDescription.vue'),
     meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+  },
+   
+  {
+    path: '/dogownerregister',
+    name: 'DogOwnerRegister',
+    component: DogOwnerFormRegister,
+  },
+
+  {
+    path: '/dogwalkerregister',
+    name: 'DogWalkerRegister',
+    component: DogWalkerFormRegister,
   },
 
 ]
