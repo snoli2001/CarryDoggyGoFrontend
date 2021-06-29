@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import DogWalkerProfile from '../components/DogWalkerProfile.vue'
 import store from '../store'
+import HomeDogWalker from "../views/HomeDogWalker";
 
 Vue.use(VueRouter)
 
@@ -25,9 +26,30 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/home-dogwalker',
+    name: 'HomeDogWalker',
+    component: HomeDogWalker,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/profile',
     name: 'Profile',
-    component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
+    // component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
+    component: () => import('../components/DogWalkerProfile.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/dogwalks',
+    name: 'DogWalk',
+    // component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
+    component: () => import('../views/DogWalk.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/record',
+    name: 'Record',
+    // component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
+    component: () => import('../views/Record.vue'),
     meta: { requiresAuth: true }
   },
   {

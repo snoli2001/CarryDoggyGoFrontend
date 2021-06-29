@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <Header v-if="loggedIn"/>
+      <HeaderDogWalker v-if="loggedIn"/>
       <router-view/>
     </v-main>
   </v-app>
@@ -11,6 +11,7 @@
 import Header from "./components/Header.vue"
 import Login from "./views/Login.vue"
 import store from './store'
+import HeaderDogWalker from "./components/HeaderDogWalker";
 
 export default {
   name: 'App',
@@ -21,6 +22,7 @@ export default {
 
   components: {
     Header,
+    HeaderDogWalker,
     Login,
   },
 
@@ -29,6 +31,7 @@ export default {
       return store.state.loggedIn;
     }
   },
+
   watch: {
     loggedIn: {
       inmediate: true,
@@ -41,6 +44,7 @@ export default {
 
 };
 </script>
+
 <style>
   #inspire img {
     height: 100%

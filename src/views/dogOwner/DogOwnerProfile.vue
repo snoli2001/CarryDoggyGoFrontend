@@ -169,10 +169,7 @@
 <script>
   import {getDogOwnerById} from '../../service/DogOwnerService.js';  
   import {getDogsByDogOwnerId, createDog} from '../../service/DogsService';  
-
     export default {
-
-
         data(){
             return {
                 dogOwner: Object,
@@ -197,8 +194,8 @@
 
         
         beforeCreate() {
-             getDogOwnerById(2).then(res => this.dogOwner = res);
-             getDogsByDogOwnerId(2).then(res => this.dogs  = res);
+             getDogOwnerById(1).then(res => this.dogOwner = res);
+             getDogsByDogOwnerId(1).then(res => this.dogs  = res);
         },
 
         methods:{

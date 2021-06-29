@@ -14,7 +14,7 @@
 
 <script>
   import DogWalkerCard from '../components/DogWalkerCard.vue';
-  import {getDogWalkers} from '../service/DogWalkerService.js';  
+  import { getDogWalkers } from '../service/DogWalkerService.js';
 
   export default {
     name: 'Home',

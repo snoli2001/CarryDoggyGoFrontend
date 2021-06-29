@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loggedIn: sessionStorage.getItem('autenticado')
+    loggedIn: sessionStorage.getItem('autenticado'),
+    DogWalker: true
   },
   mutations: {
     loggedIn(state) {

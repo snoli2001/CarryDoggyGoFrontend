@@ -53,12 +53,14 @@
 
 <script>
 import { mapActions } from 'vuex'
+
+
     export default {
         name: 'Login',
         methods: {
             login(event){
                 this.Login();
-                this.$router.push('/home');
+                this.$router.push('/home-dogwalker');
             },
             ...mapActions([
                 'Login'
