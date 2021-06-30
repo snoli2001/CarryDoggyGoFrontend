@@ -1,17 +1,19 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <HeaderDogWalker v-if="loggedIn"/>
+      <Header v-if="loggedIn && this.isDogOwner"/>
+      <HeaderDogWalker v-else-if="loggedIn && !this.isDogOwner"/>
       <router-view/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Header from "./components/Header.vue"
-import Login from "./views/Login.vue"
-import store from './store'
+import Header from "./components/Header.vue";
+import Login from "./views/Login.vue";
+import store from './store';
 import HeaderDogWalker from "./components/HeaderDogWalker";
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -29,7 +31,10 @@ export default {
   computed: {
     loggedIn() {
       return store.state.loggedIn;
-    }
+    },
+    ...mapState([
+        'isDogOwner'
+    ])
   },
 
   watch: {

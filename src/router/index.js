@@ -26,12 +26,6 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/home-dogwalker',
-    name: 'HomeDogWalker',
-    component: HomeDogWalker,
-    meta: { requiresAuth: true }
-  },
-  {
     path: '/profile',
     name: 'Profile',
     // component: () => import('../views/dogOwner/DogOwnerProfile.vue'),

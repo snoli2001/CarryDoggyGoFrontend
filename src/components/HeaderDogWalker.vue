@@ -48,7 +48,7 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      {icon: 'mdi-home', title:'Inicio', route:'/home-dogwalker'},
+      {icon: 'mdi-home', title:'Inicio', route:'/home'},
       {icon: 'mdi-account-circle', title:'Perfil', route:'/profile'},
       {icon: 'mdi-view-module', title:'Paseos', route:'/dogwalks'},
       {icon: 'mdi-book', title:'Historial', route:'/record'}
@@ -59,7 +59,7 @@ export default {
     logOut(event){
       sessionStorage.clear();
       this.LogOut();
-      localStorage.clear
+      localStorage.clear;
       this.$router.push('/login');
     },
     ...mapActions([

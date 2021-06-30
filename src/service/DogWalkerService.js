@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const apiUrl = 'https://localhost:44334/api';
 
-
 export async function getDogWalkers() {
     let dogWalkers = [];
     const response =  await axios.get(`${apiUrl}/DogWalkers`);
