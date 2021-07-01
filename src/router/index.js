@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import DogWalkerProfile from '../components/DogWalkerProfile.vue'
 import store from '../store'
 import HomeDogWalker from "../views/HomeDogWalker";
+import LogOut from "../components/auth/LogOut";
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogOut,
+    meta: { requiresAuth: true }
   },
   {
     path: '/home',
@@ -68,15 +75,17 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if(to.matched.some(route => route.meta.requiresAuth)){
-      if(!store.state.loggedIn){
-        next('/login')
-      } else {
-        next();
-      }
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.loggedIn) {
+      next({
+        name: '/login',
+      })
     } else {
       next()
     }
+  } else {
+    next() // make sure to always call next()!
+  }
 })
 
 export default router

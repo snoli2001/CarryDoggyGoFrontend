@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
+  import { mapActions, mapState, mapGetters } from 'vuex'
 
   export default {
     name: 'Login',
@@ -65,47 +65,56 @@
       }
     },
     methods: {
-      login(event) {
+      login() {
         if (this.email.empty)
           return alert("Email obligatorio");
 
         let DogWalker = this.dogWalkers.find(x => x.email === this.email);
-        if (DogWalker !== undefined){
-          this.Login();
-          this.setCurrentUser(DogWalker);
-          this.isDogWalker();
-          this.$router.push('/home');
-          return;
+        let DogOwner = this.dogOwners.find(x => x.email === this.email);
+
+        if (DogWalker !== undefined || DogOwner !== undefined){
+          this.retrieveToken({
+            email: this.email,
+            password: this.password
+          })
         }
 
-        let DogOwner = this.dogOwners.find(x => x.email === this.email);
-        if (DogOwner !== undefined){
-          this.Login();
-          this.setCurrentUser(DogOwner);
-          this.isDogOwner();
-          this.$router.push('/home');
-          return;
+        if(DogWalker !== undefined){
+          this.setCurrentUser(DogWalker);
+          this.setIsDogWalker();
+          this.$router.push({ name:'Home' });
         }
-        return alert("Usuario no existe");
+        else if(DogOwner !== undefined){
+          this.setCurrentUser(DogOwner);
+          this.setIsDogOwner();
+          this.$router.push({ name:'Home' });
+        }
+        else
+          return alert("Usuario no existe");
       },
       ...mapActions([
-        'Login',
         'getDogWalkers',
         'getDogOwners',
         'setCurrentUser',
-        'isDogOwner',
-        'isDogWalker'
+        'retrieveToken',
+        'destroyToken',
+        'setIsDogOwner',
+        'setIsDogWalker'
       ])
     },
     computed: {
       ...mapState([
         'dogWalkers',
         'dogOwners'
+      ]),
+      ...mapGetters([
+        'loggedIn'
       ])
     },
     mounted() {
       this.getDogWalkers();
       this.getDogOwners();
+      this.destroyToken();
     }
   }
 </script>

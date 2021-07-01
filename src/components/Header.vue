@@ -42,30 +42,30 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+  import { mapActions, mapState} from 'vuex'
 
-    export default {
-        data: () => ({
-            drawer: null,
-            items: [
-                {icon: 'mdi-home', title:'Inicio', route:'/home'},
-                {icon: 'mdi-account-circle', title:'Perfil', route:'/profile'},
-                {icon: 'mdi-dog-side', title:'Mis perros', route:'/dogs'}
-            ]
-        }),
+  export default {
+    data: () => ({
+      drawer: null,
+      items: [
+        {icon: 'mdi-home', title: 'Inicio', route: '/home'},
+        {icon: 'mdi-account-circle', title: 'Perfil', route: '/profile'},
+        {icon: 'mdi-dog-side', title: 'Mis perros', route: '/dogs'}
+      ]
+    }),
 
-        methods: {
-            logOut(event){
-                sessionStorage.clear();
-                this.LogOut();
-                localStorage.clear
-                this.$router.push('/login');
-            },
-            ...mapActions([
-                'LogOut'
-            ])
-        }
-    }
+    methods: {
+      logOut(event) {
+        // sessionStorage.clear();
+        // this.LogOut();
+        // localStorage.clear
+        this.$router.push('/login');
+      },
+      ...mapActions([
+        ''
+      ])
+    },
+  }
 
 </script>
 

@@ -1,19 +1,19 @@
 <template>
-  <v-card
-    class="mx-auto my-5 relative"
-    max-width="400"
-    min-width="300"
-  >
-   
-    <v-card-title>
-         <v-avatar
+  <div v-if="this.isDogOwner">
+    <v-card
+        class="mx-auto my-5 relative"
+        max-width="400"
+        min-width="300"
+    >
+      <v-card-title>
+        <v-avatar
             color="primary"
             size="48"
             class="mr-2"
         >
-            <span class="white--text text-h5">{{dogwalker.name[0]}}{{dogwalker.lastName[0]}}</span>
+          <span class="white--text text-h5">{{ dogwalker.name[0] }}{{ dogwalker.lastName[0] }}</span>
         </v-avatar>
-        {{dogwalker.name}} {{dogwalker.lastName}}  
+        {{ dogwalker.name }} {{ dogwalker.lastName }}
         <v-btn
             x-small
             color="indigo lighten-2"
@@ -21,63 +21,150 @@
             class="ml-2"
             v-on:click="seeProfile(dogwalker.dogWlakerId)"
             link
-            >
-            Ver perfil
+        >
+          Ver perfil
         </v-btn>
-    </v-card-title>
+      </v-card-title>
 
-    <v-card-text>
-      <v-row
-        align="center"
-        class="mx-0"
-      >
-        <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-        ></v-rating>
-      </v-row>
+      <v-card-text>
+        <v-row
+            align="center"
+            class="mx-0"
+        >
+          <v-rating
+              :value="4.5"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14"
+          ></v-rating>
+        </v-row>
 
-      <div class="my-4 subtitle-1">
-        Lima , Jesus María
-      </div>
-        
-      <div>{{dogwalker.description.slice(0,70)}}...</div>
-    </v-card-text>
+        <div class="my-4 subtitle-1">
+          Lima , Jesus María
+        </div>
 
-    <v-divider class="mx-4"></v-divider>
-    
-    <v-card-text>
-        <h6 class="text-subtitle-1 font-weight-medium" >
-            Teléfono: {{dogwalker.phone.slice(0,3)}}-{{dogwalker.phone.slice(3,6)}}-{{dogwalker.phone.slice(6,9)}}
+        <div>{{ dogwalker.description.slice(0, 70) }}...</div>
+      </v-card-text>
+
+      <v-divider class="mx-4"></v-divider>
+
+      <v-card-text>
+        <h6 class="text-subtitle-1 font-weight-medium">
+          Teléfono:
+          {{ dogwalker.phone.slice(0, 3) }}-{{ dogwalker.phone.slice(3, 6) }}-{{ dogwalker.phone.slice(6, 9) }}
         </h6>
 
-        <h6 class="text-subtitle-1 font-weight-medium teal--text" >
-            Pago por hora: s/{{dogwalker.paymentAmount}}
+        <h6 class="text-subtitle-1 font-weight-medium teal--text">
+          Pago por hora: s/{{ dogwalker.paymentAmount }}
         </h6>
-    </v-card-text>
+      </v-card-text>
 
-    <v-card-actions class="d-flex justify-center">
-      <v-btn
-        color="deep-purple accent-4 white--text"
-        dark
-      >
-        Agendar
-      </v-btn>
-      <v-btn
-        color="blue darken-1"
-        dark
-      >
-        Más horarios
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+      <v-card-actions class="d-flex justify-center">
+        <v-btn
+            color="deep-purple accent-4 white--text"
+            dark
+        >
+          Agendar
+        </v-btn>
+        <v-btn
+            color="blue darken-1"
+            dark
+        >
+          Más horarios
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
+
+  <!--  by gsinuiri-->
+  <div v-else>
+    <v-card
+        class="mx-auto my-5 relative"
+        max-width="400"
+        min-width="300"
+        v-for="dogOwner in this.dogOwners"
+        :key="dogOwner.dogOnwerId"
+    >
+      <v-card-title>
+        <v-avatar
+            color="primary"
+            size="48"
+            class="mr-2"
+        >
+          <span class="white--text text-h5">{{ dogOwner.name[0] }}{{ dogOwner.lastName[0] }}</span>
+        </v-avatar>
+        {{ dogOwner.name }} {{ dogOwner.lastName }}
+        <v-btn
+            x-small
+            color="indigo lighten-2"
+            text
+            class="ml-2"
+            v-on:click="seeProfile(dogOwner.dogOnwerId)"
+            link
+        >
+          Ver perfil
+        </v-btn>
+      </v-card-title>
+
+      <v-card-text>
+        <v-row
+            align="center"
+            class="mx-0"
+        >
+          <v-rating
+              :value="4.5"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14"
+          ></v-rating>
+        </v-row>
+
+        <div class="my-4 subtitle-1">
+          Lima , Jesus María
+        </div>
+
+<!--        <div>{{ dogOwner.description.slice(0, 70) }}...</div>-->
+      </v-card-text>
+
+      <v-divider class="mx-4"></v-divider>
+
+      <v-card-text>
+        <h6 class="text-subtitle-1 font-weight-medium">
+          Teléfono:
+          {{ dogOwner.phone.slice(0, 3) }}-{{ dogOwner.phone.slice(3, 6) }}-{{ dogOwner.phone.slice(6, 9) }}
+        </h6>
+
+        <h6 class="text-subtitle-1 font-weight-medium teal--text">
+          Pago por hora: s/{{ dogOwner.paymentAmount }}
+        </h6>
+      </v-card-text>
+
+      <v-card-actions class="d-flex justify-center">
+        <v-btn
+            color="deep-purple accent-4 white--text"
+            dark
+        >
+          Agendar
+        </v-btn>
+        <v-btn
+            color="blue darken-1"
+            dark
+        >
+          Más horarios
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
+
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
   export default {
     data: () => ({
       loading: false,
@@ -95,9 +182,14 @@
       }
     },
 
-    props: ['dogwalker']
-    
+    computed: {
+      ...mapState([
+        'isDogOwner',
+        'dogOwners',
+      ])
+    },
 
+    props: ['dogwalker']
   }
 </script>
 
