@@ -81,6 +81,7 @@ const routes = [
     path: '/notifications',
     name: 'Notifications',
     component: () => import('../views/dogOwner/DogOwnerNotifications.vue'),
+  },
   {
     path: '/dogWalkerDogWalks',
     name: 'DogWalkerDoWalks',
@@ -119,6 +120,7 @@ const routes = [
     name: 'DogWalkerRegister',
     component: DogWalkerFormRegister,
   },
+  {
     path: '/profileDogWalker',
     name: 'ProfileDogWalker',
     component: () => import('../views/dogWalker/DogWalkerUserProfile.vue'),

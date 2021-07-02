@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import {PostDogWalker} from  '../service/DogWalkerService.js';
+import {postDogWalker} from  '../service/DogWalkerService.js';
 
  export default {
         data(){
@@ -133,7 +133,7 @@ import {PostDogWalker} from  '../service/DogWalkerService.js';
                     description:this.Description,
                     paymentAmount: this.PaymentAmount
                 };
-                PostDogWalker(dogwalker).then(resp =>{
+                postDogWalker(dogwalker).then(resp =>{
                       console.log(resp)
                       this.$router.push("/login");
                 });

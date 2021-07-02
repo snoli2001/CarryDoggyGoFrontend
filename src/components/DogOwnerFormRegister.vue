@@ -100,7 +100,7 @@
 
 <script>
 
-import {PostDogOwner} from  '../service/DogOwnerService.js';
+import {postDogOwner} from  '../service/DogOwnerService.js';
 
  export default {
         data(){
@@ -126,7 +126,7 @@ import {PostDogOwner} from  '../service/DogOwnerService.js';
                     address:this.Address,
                     districtId: 1
                 };
-                PostDogOwner(dogowner).then(resp =>{
+                postDogOwner(dogowner).then(resp =>{
                       console.log(resp)
                       this.$router.push("/login");
                 });

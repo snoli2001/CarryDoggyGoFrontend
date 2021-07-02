@@ -23,3 +23,10 @@ export async function getAllDogWalksByDogOwnerId(id) {
     dogOwner = response.data;
     return dogOwner;
 }
+
+export async function postDogOwner(dogOwner) {
+    let dogOwnerrdata = null;
+    const response =  await axios.post(`${apiUrl}/DogOwners/`, dogOwner);
+    dogOwnerrdata = response.data;
+    return dogOwnerrdata;
+}
