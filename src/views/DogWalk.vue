@@ -200,7 +200,9 @@ import { mapState } from 'vuex';
           districtId: this.districtId
         }
 
-        createDogWalk(newDogWalk).then(resp => this.$router.push('/record'));
+        createDogWalk(newDogWalk).then(resp => {
+          this.$router.push('/record')
+        });
         
 
       }

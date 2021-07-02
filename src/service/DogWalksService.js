@@ -5,7 +5,6 @@ import axios from 'axios';
 const apiUrl = 'https://carrydoggygoaw.azurewebsites.net/api';
 
 export async function createDogWalk(dogwalkData) {
-    console.log(dogwalkData);
     const response = await axios.post(`${apiUrl}/DogWalks`,dogwalkData);
     return response.data
 }

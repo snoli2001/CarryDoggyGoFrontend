@@ -1,7 +1,7 @@
 <template>
   <v-data-table
       :headers="headers"
-      :items="dogWalksFilter"
+      :items="dogWalks"
       :items-per-page="5"
       class="elevation-1"
   ></v-data-table>
@@ -36,6 +36,7 @@ export default {
       dogWalk.dogWalker = dogWalker.name + " " + dogWalker.lastName
       return dogWalk 
     }));
+    console.log(this.dogWalks)
   },
   computed:{
     ...mapState([
