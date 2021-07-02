@@ -209,8 +209,11 @@
                     description : this.description,
                     medicalInformation : this.medicalInformation,
                 };
-                createDog(this.currentUSer.dogOnwerId, dog).then(resp => console.log(resp));
-                window.location.reload();
+                createDog(this.currentUSer.dogOnwerId, dog).then(resp =>{
+                   getDogOwnerById(this.currentUSer.dogOnwerId).then(res => this.dogOwner = res);
+                   getDogsByDogOwnerId(this.currentUSer.dogOnwerId).then(res => this.dogs  = res);
+                   this.dialog = false;
+                });
             }
         },
 
