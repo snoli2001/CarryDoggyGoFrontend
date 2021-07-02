@@ -25,24 +25,17 @@ export default {
         { text: 'Monto pago', value: 'paymentAmount' },
         { text: 'Información adicional', value: 'aditionalInformation' },
           // TODO: Mostrar paseador
-        // { text: 'Paseador', value: 'dogWalker' },
+        { text: 'Paseador', value: 'dogWalker' },
       ],
     }
   },
-  created() {
-    getAllDogWalksByDogOwnerId(this.currentUSer.dogOnwerId)
-        .then(resp => {
-          this.dogWalks = resp;
-          // this.dogWalks = resp.map(dogwalk => {
-          //   getDogWalkersById(dogwalk.dogWalkerId)
-          //       .then(resp => {
-          //         dogwalk.dogWalker = resp.email;
-          //         console.log(dogwalk.dogWalker)
-          //       })
-          //
-          //   console.log(this.dogWalks)
-          // });
-        });
+  async created() {
+    this.dogWalks = await getAllDogWalksByDogOwnerId(this.currentUSer.dogOnwerId);
+    this.dogWalks = await Promise.all(this.dogWalks.map( async (dogWalk) => {
+      const dogWalker = await getDogWalkersById(dogWalk.dogWalkerId);
+      dogWalk.dogWalker = dogWalker.name + " " + dogWalker.lastName
+      return dogWalk 
+    }));
   },
   computed:{
     ...mapState([

@@ -171,6 +171,7 @@
 <script>
   import {getDogOwnerById} from '../../service/DogOwnerService.js';  
   import {getDogsByDogOwnerId, createDog} from '../../service/DogsService';  
+  import { mapState } from 'vuex';
     export default {
         data(){
             return {
@@ -195,11 +196,9 @@
         },
 
         
-        beforeCreate() {
-          console.log("holaaaa")
-             getDogOwnerById(1).then(res => this.dogOwner = res);
-             getDogsByDogOwnerId(1).then(res => this.dogs  = res);
-
+        created() {
+             getDogOwnerById(this.currentUSer.dogOnwerId).then(res => this.dogOwner = res);
+             getDogsByDogOwnerId(this.currentUSer.dogOnwerId).then(res => this.dogs  = res);
         },
 
         methods:{
@@ -210,7 +209,7 @@
                     description : this.description,
                     medicalInformation : this.medicalInformation,
                 };
-                createDog(2, dog).then(resp => console.log(resp));
+                createDog(this.currentUSer.dogOnwerId, dog).then(resp => console.log(resp));
                 window.location.reload();
             }
         },
@@ -222,5 +221,10 @@
                 return value.charAt(0).toUpperCase() + value.slice(1)
             }
         },
+        computed: {
+          ...mapState([
+            'currentUSer'
+          ])
+        }
     }
 </script>

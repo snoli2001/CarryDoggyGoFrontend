@@ -77,9 +77,9 @@
       {
         this.items = [
           {icon: 'mdi-home', title:'Inicio', route:'/home'},
-          {icon: 'mdi-account-circle', title:'Perfil', route:'/profile'},
-          {icon: 'mdi-view-module', title:'Paseos', route:'/dogwalks'},
-          {icon: 'mdi-book', title:'Historial', route:'/record'}
+          {icon: 'mdi-account-circle', title:'Perfil', route:'/profileDogWalker'},
+          {icon: 'mdi-view-module', title:'Paseos', route:'/dogwalkerDogWalks'},
+          {icon: 'mdi-book', title:'Historial', route:'/dogWalkerRecord'}
         ]
       }
     },

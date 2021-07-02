@@ -72,6 +72,47 @@ const routes = [
     meta: { requiresAuth: true }
   },
 
+
+
+
+
+
+
+
+
+  
+
+
+
+  {
+    path: '/dogWalkerDogWalks',
+    name: 'DogWalkerDoWalks',
+    component: () => import('../views/dogWalker/DogWalkerDogWalks.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/dogWalkerRecord',
+    name: 'DogWalkerRecord',
+    component: () => import('../views/dogWalker/DogWalkerRecord.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/profileDogWalker',
+    name: 'ProfileDogWalker',
+    component: () => import('../views/dogWalker/DogWalkerUserProfile.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/dogOwner/:id',
+    name: 'DogOwnerProfile',
+    component: () => import('../views/DogOwnerProfileRedirect.vue'),
+    meta: { requiresAuth: true }
+  },
+  
+
 ]
 
 const router = new VueRouter({
