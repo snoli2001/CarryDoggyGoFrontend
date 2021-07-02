@@ -78,21 +78,25 @@ import { cancelDogWalk } from '../../service/DogWalksService'
                 await startDogWalk(id);
                 this.dogWalks = await getDogWalkByDogWalkerId(this.currentUSer.dogWlakerId)
                 this.dogWalks = this.dogWalks.filter(d => d.state < 2)
+                this.dogWalks = this.dogWalks.reverse() 
             },
             async cancelDogWalk(id){
                 await cancelDogWalk(id);
                 this.dogWalks = await getDogWalkByDogWalkerId(this.currentUSer.dogWlakerId)
                 this.dogWalks = this.dogWalks.filter(d => d.state < 2)
+                this.dogWalks = this.dogWalks.reverse() 
             },
             async finishDogWalk(id){
                 await finishDogWalk(id);
                 this.dogWalks = await getDogWalkByDogWalkerId(this.currentUSer.dogWlakerId)
                 this.dogWalks = this.dogWalks.filter(d => d.state < 2)
+                this.dogWalks = this.dogWalks.reverse() 
             }
         },
         async created(){ 
             this.dogWalks = await getDogWalkByDogWalkerId(this.currentUSer.dogWlakerId);
-            this.dogWalks = this.dogWalks.filter(d => d.state < 2) 
+            this.dogWalks = this.dogWalks.filter(d => d.state < 2)
+            this.dogWalks = this.dogWalks.reverse()  
         },
         
         computed: {

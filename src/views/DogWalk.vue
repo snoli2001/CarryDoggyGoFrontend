@@ -186,7 +186,7 @@
         d.setUTCHours(h, m);
         return d.toISOString();
       },
-      async createDogWalkInAgent() {
+      createDogWalkInAgent() {
         const selectedDate = this.getDate();
         let newDogWalk = {
           hours: Number(this.hours),
@@ -200,7 +200,9 @@
           districtId: this.districtId
         }
 
-        await createDogWalk(newDogWalk);
+        createDogWalk(newDogWalk).then(resp => this.$router.push('/record'));
+        
+
       }
     },
 

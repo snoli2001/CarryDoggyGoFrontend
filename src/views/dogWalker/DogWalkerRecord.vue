@@ -51,6 +51,7 @@ import { mapState } from 'vuex';
         async created(){ 
             this.dogWalks = await getDogWalkByDogWalkerId(this.currentUSer.dogWlakerId);
             this.dogWalks = this.dogWalks.filter(d => d.state >= 2) 
+            this.dogWalks = this.dogWalks.reverse() 
         },
 
         computed: {
