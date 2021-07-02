@@ -1,7 +1,7 @@
 <template>
   <v-data-table
       :headers="headers"
-      :items="dogWalks"
+      :items="dogWalksFilter"
       :items-per-page="5"
       class="elevation-1"
   ></v-data-table>
@@ -18,6 +18,7 @@ export default {
   data: function () {
     return {
       dogWalks: [],
+      dogWalksFilter: [],
       headers: [
         { text: 'Fecha', value: 'date' },
         { text: 'Dirección', value: 'address' },
@@ -25,7 +26,7 @@ export default {
         { text: 'Monto pago', value: 'paymentAmount' },
         { text: 'Información adicional', value: 'aditionalInformation' },
           // TODO: Mostrar paseador
-        // { text: 'Paseador', value: 'dogWalker' },
+        { text: 'Paseador', value: 'paseador' },
       ],
     }
   },
@@ -33,15 +34,15 @@ export default {
     getAllDogWalksByDogOwnerId(this.currentUSer.dogOnwerId)
         .then(resp => {
           this.dogWalks = resp;
-          // this.dogWalks = resp.map(dogwalk => {
-          //   getDogWalkersById(dogwalk.dogWalkerId)
-          //       .then(resp => {
-          //         dogwalk.dogWalker = resp.email;
-          //         console.log(dogwalk.dogWalker)
-          //       })
-          //
-          //   console.log(this.dogWalks)
-          // });
+
+          this.dogWalks = resp.map(dogwalk => {
+            let currentDogWalker = this.dogWalkers.find(x=>x.dogWlakerId === dogwalk.dogWalkerId);
+            this.dogWalksFilter.push(
+                {...dogwalk, 'paseador': currentDogWalker.name + " " + currentDogWalker.lastName}
+            );
+          });
+
+          console.log(this.dogWalkers)
         });
   },
   computed:{

@@ -2,10 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import DogWalkerProfile from '../components/DogWalkerProfile.vue'
 import store from '../store'
 import HomeDogWalker from "../views/HomeDogWalker";
 import LogOut from "../components/auth/LogOut";
+
+import Register from '../views/Register.vue'
+import DogWalkerProfile from '../components/DogWalkerProfile.vue'
+import DogOwnerFormRegister from '../components/DogOwnerFormRegister.vue'
+import DogWalkerFormRegister from '../components/DogWalkerFormRegister.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +76,38 @@ const routes = [
     meta: { requiresAuth: true }
   },
 
+  // By Alejo
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: () => import('../views/dogOwner/DogOwnerNotifications.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/notification/:id',
+    name: 'DogOwnerNotification',
+    component: () => import('../components/DogOwnerNotificationDescription.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+  },
+
+  {
+    path: '/dogownerregister',
+    name: 'DogOwnerRegister',
+    component: DogOwnerFormRegister,
+  },
+
+  {
+    path: '/dogwalkerregister',
+    name: 'DogWalkerRegister',
+    component: DogWalkerFormRegister,
+  },
 ]
 
 const router = new VueRouter({
