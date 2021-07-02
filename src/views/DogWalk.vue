@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Header/>
         <v-form>
             <v-card class="py-5 px-5 mx-5 my-5">
              <v-row align="center">
@@ -106,7 +105,7 @@
 
 
             <v-row d-flex justify="center">
-                <v-btn color="primary" @click="createDogWalk()">
+                <v-btn color="primary" @click="createDogWalkInAgent()">
                     Agendar
                 </v-btn>
             </v-row>
@@ -121,7 +120,6 @@
   import {getDistricts} from '../service/DistrictService.js';
   import {getDogsByDogOwnerId} from '../service/DogsService.js';
   import {createDogWalk} from '../service/DogWalksService.js';
-  import Header from "../components/Header.vue"
 
   name: 'DogWalk';
 
@@ -188,7 +186,7 @@
         d.setUTCHours(h, m);
         return d.toISOString();
       },
-      createDogWalk() {
+      createDogWalkInAgent() {
         const selectedDate = this.getDate();
         let newDogWalk = {
           hours: Number(this.hours),
@@ -202,12 +200,11 @@
           districtId: this.districtId
         }
 
-        createDogWalk(newDogWalk);
+        createDogWalk(newDogWalk).then(resp => this.$router.push('/record'));
+        
+
       }
     },
-    components: {
-      Header,
-    }
 
   }
 </script>

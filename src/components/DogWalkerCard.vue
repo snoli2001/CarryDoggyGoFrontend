@@ -84,11 +84,7 @@ import { mapState } from 'vuex'
     }),
 
     methods: {
-      reserve () {
-        this.loading = true
-
-        setTimeout(() => (this.loading = false), 2000)
-      },
+      
       seeProfile(dogWlakerId) {
         this.$router.push('/dogwalker/'+ dogWlakerId);
       },

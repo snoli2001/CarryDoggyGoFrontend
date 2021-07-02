@@ -81,6 +81,11 @@ const routes = [
     path: '/notifications',
     name: 'Notifications',
     component: () => import('../views/dogOwner/DogOwnerNotifications.vue'),
+  {
+    path: '/dogWalkerDogWalks',
+    name: 'DogWalkerDoWalks',
+    component: () => import('../views/dogWalker/DogWalkerDogWalks.vue'),
+
     meta: { requiresAuth: true }
   },
 
@@ -88,6 +93,12 @@ const routes = [
     path: '/notification/:id',
     name: 'DogOwnerNotification',
     component: () => import('../components/DogOwnerNotificationDescription.vue'),
+  },
+  {
+
+    path: '/dogWalkerRecord',
+    name: 'DogWalkerRecord',
+    component: () => import('../views/dogWalker/DogWalkerRecord.vue'),
     meta: { requiresAuth: true }
   },
 
@@ -108,6 +119,19 @@ const routes = [
     name: 'DogWalkerRegister',
     component: DogWalkerFormRegister,
   },
+    path: '/profileDogWalker',
+    name: 'ProfileDogWalker',
+    component: () => import('../views/dogWalker/DogWalkerUserProfile.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
+    path: '/dogOwner/:id',
+    name: 'DogOwnerProfile',
+    component: () => import('../views/DogOwnerProfileRedirect.vue'),
+    meta: { requiresAuth: true }
+  },
+  
 ]
 
 const router = new VueRouter({

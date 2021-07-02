@@ -13,7 +13,7 @@
         <div v-else>
           <v-col class="col-12 col-sm-5 col-md-4"
                  v-for="(dogOwner, index) in this.dogOwners" :key="index">
-            <dog-walker-card :dogwalker="dogOwner"/>
+            <dog-owner-card :dogOwner="dogOwner"/>
           </v-col>
         </div>
 
@@ -26,12 +26,14 @@
 <script>
   import DogWalkerCard from '../components/DogWalkerCard.vue';
   import { mapState } from 'vuex';
+import DogOwnerCard from '../components/DogOwnerCard.vue';
 
   export default {
     name: 'Home',
 
     components: {
-      DogWalkerCard
+      DogWalkerCard,
+        DogOwnerCard
     },
 
     computed: {
