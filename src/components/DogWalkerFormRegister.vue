@@ -30,6 +30,7 @@
                         name="email"
                         prepend-icon="mdi-email"
                         type="text"
+                        v-model="Email"
                         ></v-text-field>
 
                         <v-text-field
@@ -37,7 +38,16 @@
                         name="name"
                         prepend-icon="mdi-account"
                         type="text"
+                        v-model="Name"
                         ></v-text-field>
+
+                        <v-text-field
+                        label="Last Name"
+                        name="LastName"
+                        prepend-icon="mdi-account"
+                        type="text"
+                        v-model="LastName"
+                        ></v-text-field>                        
 
                         <v-text-field
                         id="password"
@@ -45,8 +55,33 @@
                         name="password"
                         prepend-icon="mdi-lock"
                         type="password"
+                        v-model="Password"
                         ></v-text-field>
-                        
+
+                        <v-text-field
+                        label="Phone"
+                        name="phone"
+                        prepend-icon="mdi-phone"
+                        type="text"
+                        v-model="Phone"
+                        ></v-text-field>
+
+                        <v-text-field
+                        label="Description"
+                        name="description"
+                        prepend-icon="mdi-message"
+                        type="text"
+                        v-model="Description"
+                        ></v-text-field>                        
+
+                        <v-text-field
+                        label="Payment Amount"
+                        name="Payment Amount"
+                        prepend-icon="mdi-message"
+                        type="number"
+                        v-model="PaymentAmount"
+                        ></v-text-field>
+
                         <v-checkbox 
                         label = "Accept terms and conditions"
                         name="Accept"
@@ -61,7 +96,7 @@
                     </v-card-text>
                     <v-card-actions>
                      <v-spacer></v-spacer>
-                      <v-btn color="primary" v-on:click="register" >Register Now</v-btn>    
+                      <v-btn color="primary" v-on:click="createDogWalker" >Register Now</v-btn>    
                      <v-spacer></v-spacer>
                     </v-card-actions>
                 </v-card>
@@ -72,6 +107,40 @@
 </template>
 
 <script>
+import {PostDogWalker} from  '../service/DogWalkerService.js';
+
+ export default {
+        data(){
+            return{
+              Name: '',
+              LastName:'',
+              Email:'',
+              Password:'',
+              Phone:'',
+              Description:'',
+              PaymentAmount: Number
+            }
+        },
+
+        methods:{
+            createDogWalker() {
+                let dogwalker = {
+                    name: this.Name,
+                    lastname : this.LastName,
+                    email : this.Email,
+                    password : this.Password,
+                    phone:this.Phone,
+                    description:this.Description,
+                    paymentAmount: this.PaymentAmount
+                };
+                PostDogWalker(dogwalker).then(resp =>{
+                      console.log(resp)
+                      this.$router.push("/login");
+                });
+                }
+        },
+  
+  }
 
 </script>
 

@@ -9,3 +9,10 @@ export async function getDogOwnerById(id) {
     dogOwner = response.data;
     return dogOwner;
 }
+
+export async function PostDogOwner(dogowner) {
+    let createdDogOwner = null;
+    const response = await axios.post(`${apiUrl}/DogOwners`, dogowner);
+    createdDogOwner = response.data;
+    return createdDogOwner;
+}

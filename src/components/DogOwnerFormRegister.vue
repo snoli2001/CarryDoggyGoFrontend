@@ -27,16 +27,26 @@
                     <v-form>
                         <v-text-field
                         label="Email"
-                        name="email"
+                        name="Email"
                         prepend-icon="mdi-email"
                         type="text"
+                        v-model="Email"
                         ></v-text-field>
 
                         <v-text-field
+                        name="Name"
                         label="Name"
-                        name="name"
                         prepend-icon="mdi-account"
                         type="text"
+                        v-model="Name"
+                        ></v-text-field>
+
+                        <v-text-field
+                        label="Last Name"
+                        name="LastName"
+                        prepend-icon="mdi-account"
+                        type="text"
+                        v-model="LastName"
                         ></v-text-field>
 
                         <v-text-field
@@ -45,6 +55,23 @@
                         name="password"
                         prepend-icon="mdi-lock"
                         type="password"
+                        v-model="Password"
+                        ></v-text-field>
+
+                        <v-text-field
+                        label="Phone"
+                        name="phone"
+                        prepend-icon="mdi-phone"
+                        type="text"
+                        v-model="Phone"
+                        ></v-text-field>
+
+                        <v-text-field
+                        label="Address"
+                        name="address"
+                        prepend-icon="mdi-message"
+                        type="text"
+                        v-model="Address"
                         ></v-text-field>
                         
                         <v-checkbox 
@@ -61,7 +88,7 @@
                     </v-card-text>
                     <v-card-actions>
                      <v-spacer></v-spacer>
-                      <v-btn color="primary" v-on:click="register" >Register Now</v-btn>    
+                      <v-btn color="primary" v-on:click="createDogOwner" >Register Now</v-btn>    
                      <v-spacer></v-spacer>
                     </v-card-actions>
                 </v-card>
@@ -72,6 +99,41 @@
 </template>
 
 <script>
+
+import {PostDogOwner} from  '../service/DogOwnerService.js';
+
+ export default {
+        data(){
+            return{
+              Name: '',
+              LastName:'',
+              Email:'',
+              Password:'',
+              Phone:'',
+              Address:'',
+              DistrictId: Number
+            }
+        },
+
+        methods:{
+            createDogOwner() {
+                let dogowner = {
+                    name: this.Name,
+                    lastname : this.LastName,
+                    email : this.Email,
+                    password : this.Password,
+                    phone:this.Phone,
+                    address:this.Address,
+                    districtId: 1
+                };
+                PostDogOwner(dogowner).then(resp =>{
+                      console.log(resp)
+                      this.$router.push("/login");
+                });
+                }
+        },
+  
+  }
 
 </script>
 

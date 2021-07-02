@@ -17,3 +17,10 @@ export async function getDogWalkersById(id) {
     dogWalkers = response.data;
     return dogWalkers;
 }
+
+export async function PostDogWalker(dogwalker) {
+    let createdDogWalker = null;
+    const response = await axios.post(`${apiUrl}/DogWalkers`, dogwalker);
+    createdDogWalker = response.data;
+    return createdDogWalker;
+}
