@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 
-const apiUrl = 'https://localhost:44334/api';
+// const apiUrl = 'https://localhost:44334/api';
+const apiUrl = 'https://carrydoggygoaw.azurewebsites.net/api';
 
 export async function getDogOwners() {
     let dogOwners = [];
