@@ -196,8 +196,10 @@
 
         
         beforeCreate() {
+          console.log("holaaaa")
              getDogOwnerById(1).then(res => this.dogOwner = res);
              getDogsByDogOwnerId(1).then(res => this.dogs  = res);
+
         },
 
         methods:{

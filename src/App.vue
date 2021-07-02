@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <Header v-if="this.loggedIn && this.isDogOwner"/>
-      <HeaderDogWalker v-else-if="this.loggedIn && !this.isDogOwner"/>
+      <Header v-if="this.loggedIn"/>
+<!--      <HeaderDogWalker v-else-if="this.loggedIn && !this.isDogOwner"/>-->
       <router-view/>
     </v-main>
   </v-app>

@@ -43,6 +43,7 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
+              <v-btn color="primary" v-on:click="register" >Register</v-btn>
               <v-spacer></v-spacer>
               <v-btn color="primary" @click="login">Login</v-btn>
             </v-card-actions>
@@ -91,6 +92,9 @@
         }
         else
           return alert("Usuario no existe");
+      },
+      register(event){
+        this.$router.push('/register');
       },
       ...mapActions([
         'getDogWalkers',

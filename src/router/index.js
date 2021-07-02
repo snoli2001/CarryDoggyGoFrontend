@@ -35,14 +35,20 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    // component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
-    component: () => import('../components/DogWalkerProfile.vue'),
+    component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
+    // component: () => import('../components/DogWalkerProfile.vue'),
     meta: { requiresAuth: true }
   },
   {
     path: '/dogwalks',
-    name: 'DogWalk',
+    name: 'DogWalks',
     // component: () => import('../views/dogOwner/DogOwnerProfile.vue'),
+    component: () => import('../views/DogWalk.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/dogwalk/:id',
+    name: 'DogWalk',
     component: () => import('../views/DogWalk.vue'),
     meta: { requiresAuth: true }
   },
