@@ -116,6 +116,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
   import {getCities} from '../service/CitiesService.js';
   import {getDistricts} from '../service/DistrictService.js';
   import {getDogsByDogOwnerId} from '../service/DogsService.js';
@@ -165,7 +166,7 @@
     beforeCreate() {
       getCities()
           .then(response => this.cities = response);
-      getDogsByDogOwnerId(1)
+      getDogsByDogOwnerId(this.currentUSer.dogOnwerId)
           .then(response => this.dogs = response);
 
     },
@@ -205,6 +206,12 @@
 
       }
     },
+     computed:{
+    ...mapState([
+      'currentUSer',
+      'dogWalkers'
+    ])
+  }
 
   }
 </script>
