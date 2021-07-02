@@ -71,7 +71,7 @@
         this.items = [
           {icon: 'mdi-home', title: 'Inicio', route: '/home'},
           {icon: 'mdi-account-circle', title: 'Perfil', route: '/profile'},
-          {icon: 'mdi-book', title: 'Historial', route: '/dogs'}
+          {icon: 'mdi-book', title: 'Historial', route: '/record'}
         ]
       }else
       {

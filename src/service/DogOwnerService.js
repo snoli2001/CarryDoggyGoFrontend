@@ -16,3 +16,10 @@ export async function getDogOwnerById(id) {
     dogOwner = response.data;
     return dogOwner;
 }
+
+export async function getAllDogWalksByDogOwnerId(id) {
+    let dogOwner = null;
+    const response =  await axios.get(`${apiUrl}/DogOwners/${id}/DogWalks`);
+    dogOwner = response.data;
+    return dogOwner;
+}
