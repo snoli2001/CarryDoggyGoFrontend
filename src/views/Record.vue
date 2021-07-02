@@ -1,7 +1,7 @@
 <template>
   <v-data-table
       :headers="headers"
-      :items="dogWalks"
+      :items="dogWalksFilter"
       :items-per-page="5"
       class="elevation-1"
   ></v-data-table>
@@ -18,13 +18,13 @@ export default {
   data: function () {
     return {
       dogWalks: [],
+      dogWalksFilter: [],
       headers: [
         { text: 'Fecha', value: 'date' },
         { text: 'Dirección', value: 'address' },
         { text: 'Hora(s)', value: 'hours' },
         { text: 'Monto pago', value: 'paymentAmount' },
         { text: 'Información adicional', value: 'aditionalInformation' },
-          // TODO: Mostrar paseador
         { text: 'Paseador', value: 'dogWalker' },
       ],
     }
