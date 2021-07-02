@@ -166,13 +166,12 @@ import { mapState } from 'vuex';
     beforeCreate() {
       getCities()
           .then(response => this.cities = response);
-      getDogsByDogOwnerId(this.currentUSer.dogOnwerId)
-          .then(response => this.dogs = response);
-
     },
     created() {
+      getDogsByDogOwnerId(this.currentUSer.dogOnwerId)
+      .then(response => this.dogs = response);
+
       this.paymentAmount = this.$route.query.price;
-      console.log(this.paymentAmount)
     },
 
     methods: {
