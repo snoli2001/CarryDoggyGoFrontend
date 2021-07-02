@@ -49,16 +49,23 @@
 </template>
 
 <script>
-import { getDogWalkersById } from '../service/DogWalkerService'
+import { mapState } from 'vuex';
+
+import { getDogWalkersById } from '../../service/DogWalkerService'
     export default {
         data() {
             return {
-                id: this.$route.params.id,
                 dogWalker: null
             }
         },
-        created(){
-            getDogWalkersById(this.id).then(resp => this.dogWalker = resp )
+        async created(){
+            this.dogWalker = await getDogWalkersById(this.currentUSer.dogWlakerId)
+        },
+
+        computed: {
+          ...mapState([
+            'currentUSer'
+          ])
         }
         
     }

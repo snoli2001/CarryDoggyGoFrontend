@@ -24,6 +24,16 @@
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 <v-toolbar-title>CarryDoggyGo</v-toolbar-title>
                 <v-spacer></v-spacer>
+
+                <v-btn
+                    class="ma-2"
+                    color="red lighten-1"
+                    v-on:click ="notifications()"
+                >
+                  <v-icon>mdi-bell</v-icon>
+                </v-btn>
+
+
                 <v-btn
                     class="ma-2"
                     color="red lighten-1"
@@ -42,28 +52,58 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+  import { mapActions, mapState} from 'vuex'
 
-    export default {
-        data: () => ({
-            drawer: null,
-            items: [
-                {icon: 'mdi-home', title:'Inicio', route:'/home'},
-                {icon: 'mdi-account-circle', title:'Perfil', route:'/profile'},
-                {icon: 'mdi-dog-side', title:'Mis perros', route:'/dogs'}
-            ]
-        }),
+  export default {
+    data: () => ({
+      drawer: null,
+      // items: [
+      //   {icon: 'mdi-home', title: 'Inicio', route: '/home'},
+      //   {icon: 'mdi-account-circle', title: 'Perfil', route: '/profile'},
+      //   {icon: 'mdi-book', title: 'Historial', route: '/dogs'}
+      // ]
+      items: []
+    }),
 
-        methods: {
-            logOut(event){
-                this.LogOut();
-                this.$router.push('/login');
-            },
-            ...mapActions([
-                'LogOut'
-            ])
-        }
+    created() {
+      console.log(this.isDogOwner)
+      if(this.isDogOwner){
+        this.items = [
+          {icon: 'mdi-home', title: 'Inicio', route: '/home'},
+          {icon: 'mdi-account-circle', title: 'Perfil', route: '/profile'},
+          {icon: 'mdi-book', title: 'Historial', route: '/record'}
+        ]
+      }else
+      {
+        this.items = [
+          {icon: 'mdi-home', title:'Inicio', route:'/home'},
+          {icon: 'mdi-account-circle', title:'Perfil', route:'/profileDogWalker'},
+          {icon: 'mdi-view-module', title:'Paseos', route:'/dogwalkerDogWalks'},
+          {icon: 'mdi-book', title:'Historial', route:'/dogWalkerRecord'}
+        ]
+      }
+    },
+
+    methods: {
+      logOut(event) {
+        // sessionStorage.clear();
+        // this.LogOut();
+        // localStorage.clear
+        this.$router.push('/login');
+      },
+      ...mapActions([
+        ''
+      ]),
+      //Metodo para que funcione mi boton notificacion by Alejo
+      notifications(event){
+        this.$router.push('/notifications');
+      },
+    },
+    computed:{
+      ...mapState([
+          'isDogOwner'
+      ])
     }
-
+  }
 </script>
 

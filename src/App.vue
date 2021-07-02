@@ -1,16 +1,18 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <Header v-if="loggedIn"/>
+      <Header v-if="this.loggedIn"/>
+<!--      <HeaderDogWalker v-else-if="this.loggedIn && !this.isDogOwner"/>-->
       <router-view/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Header from "./components/Header.vue"
-import Login from "./views/Login.vue"
-import store from './store'
+import Header from "./components/Header.vue";
+import Login from "./views/Login.vue";
+import HeaderDogWalker from "./components/HeaderDogWalker";
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'App',
@@ -21,14 +23,19 @@ export default {
 
   components: {
     Header,
+    HeaderDogWalker,
     Login,
   },
 
   computed: {
-    loggedIn() {
-      return store.state.loggedIn;
-    }
+    ...mapState([
+        'isDogOwner'
+    ]),
+    ...mapGetters([
+        'loggedIn'
+    ])
   },
+
   watch: {
     loggedIn: {
       inmediate: true,
@@ -41,6 +48,7 @@ export default {
 
 };
 </script>
+
 <style>
   #inspire img {
     height: 100%
