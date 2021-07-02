@@ -8,6 +8,7 @@
                 align="center"
                 justify="center"
             >
+                
                 <v-col
                 cols="12"
                 sm="8"
@@ -24,6 +25,16 @@
                     </v-toolbar>
                     <v-card-text>
                     <v-form>
+
+                        <v-select
+                            :items="userTypes"
+                            name="userType"
+                            item-text="name"
+                            item-value="value"
+                            v-model="userType"
+                            label="Tipo de usuario"
+                        ></v-select>
+
                         <v-text-field
                         label="Login"
                         name="login"
@@ -55,10 +66,21 @@
 import { mapActions } from 'vuex'
     export default {
         name: 'Login',
+        data() {
+            return{
+                userType: 1,
+                userTypes: [{name:'Paseador', value: 2},{name:'Dueño de perro', value:1}]
+            }
+
+        },
         methods: {
             login(event){
                 this.Login();
-                this.$router.push('/home');
+                if(this.userType == 1){
+                    this.$router.push('/home');
+                } else{
+                    this.$router.push('/homedogwalker');
+                }
             },
             ...mapActions([
                 'Login'

@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <Header v-if="loggedIn"/>
+     
       <router-view/>
     </v-main>
   </v-app>

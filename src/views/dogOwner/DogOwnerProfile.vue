@@ -1,4 +1,7 @@
 <template>
+    <div>
+         <Header/>
+
     <v-container fluid  v-if="dogOwner.phone !== undefined">
         <v-row>
             <v-col cols="12" lg="4"  md="6"  >
@@ -66,8 +69,8 @@
                             </v-card-text>
                             <v-card-actions class="d-flex mr-5 justify-center">
                                 <v-btn
-                                    text
                                     color="teal accent-4"
+                                    dark
                                 >
                                     Ver
                                 </v-btn>
@@ -164,11 +167,13 @@
             </v-col>
         </v-row>
     </v-container>
+</div>
 </template>
 
 <script>
   import {getDogOwnerById} from '../../service/DogOwnerService.js';  
   import {getDogsByDogOwnerId, createDog} from '../../service/DogsService';  
+  import Header from "../../components/Header.vue"
 
     export default {
 
@@ -197,8 +202,8 @@
 
         
         beforeCreate() {
-             getDogOwnerById(2).then(res => this.dogOwner = res);
-             getDogsByDogOwnerId(2).then(res => this.dogs  = res);
+             getDogOwnerById(1).then(res => this.dogOwner = res);
+             getDogsByDogOwnerId(1).then(res => this.dogs  = res);
         },
 
         methods:{
@@ -209,7 +214,7 @@
                     description : this.description,
                     medicalInformation : this.medicalInformation,
                 };
-                createDog(2, dog).then(resp => console.log(resp));
+                createDog(1, dog).then(resp => console.log(resp));
                 window.location.reload();
             }
         },
@@ -221,5 +226,8 @@
                 return value.charAt(0).toUpperCase() + value.slice(1)
             }
         },
+        components: {
+            Header
+        }
     }
 </script>

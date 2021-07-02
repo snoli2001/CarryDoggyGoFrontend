@@ -48,9 +48,7 @@ import { mapActions } from 'vuex'
         data: () => ({
             drawer: null,
             items: [
-                {icon: 'mdi-home', title:'Inicio', route:'/home'},
-                {icon: 'mdi-account-circle', title:'Perfil', route:'/profile'},
-                {icon: 'mdi-dog-service', title:'Paseos', route:'/dogwalks'}
+                {icon: 'mdi-home', title:'Inicio', route:'/homedogwalker'},
             ]
         }),
 

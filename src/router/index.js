@@ -31,15 +31,27 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/dogs',
-    name: 'Dogs',
-    component: () => import('../views/dogOwner/Dogs.vue'),
+    path: '/dogwalks',
+    name: 'DogWalks',
+    component: () => import('../views/dogOwner/DogWalks.vue'),
     meta: { requiresAuth: true }
   },
   {
     path: '/dogwalker/:id',
     name: 'DogWalkerProfile',
     component: DogWalkerProfile,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/dogwalk/:id',
+    name: 'DogWalk',
+    component: () => import('../views/dogWalk.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/homedogWalker',
+    name: 'dogWalkerHome',
+    component: () => import('../views/dogWalker/HomeDogWalker.vue'),
     meta: { requiresAuth: true }
   },
 

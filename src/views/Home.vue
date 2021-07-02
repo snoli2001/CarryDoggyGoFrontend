@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header/>
     <v-container>
         <v-row justify="center" justify-md="start">
           <v-col class="col-12 col-sm-5 col-md-4" 
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+  import Header from "../components/Header.vue"
   import DogWalkerCard from '../components/DogWalkerCard.vue';
   import {getDogWalkers} from '../service/DogWalkerService.js';  
 
@@ -30,7 +32,8 @@
     },
 
     components: {
-      DogWalkerCard
+      DogWalkerCard,
+      Header,
     },
 
 

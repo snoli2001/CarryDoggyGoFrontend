@@ -1,6 +1,6 @@
 <template>
     <div>
-        Dogs 
+        DogWalks 
     </div>
 </template>
 

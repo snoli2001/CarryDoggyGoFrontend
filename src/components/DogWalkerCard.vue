@@ -64,15 +64,11 @@
       <v-btn
         color="deep-purple accent-4 white--text"
         dark
+        v-on:click="scheduleDogWalk(dogwalker.dogWlakerId)"
       >
         Agendar
       </v-btn>
-      <v-btn
-        color="blue darken-1"
-        dark
-      >
-        Más horarios
-      </v-btn>
+      
     </v-card-actions>
   </v-card>
 </template>
@@ -90,9 +86,19 @@
 
         setTimeout(() => (this.loading = false), 2000)
       },
+
       seeProfile(dogWlakerId) {
         this.$router.push('/dogwalker/'+ dogWlakerId);
+      },
+
+      scheduleDogWalk(dogWlakerId){
+        this.$router.push({
+          path:'/dogwalk/'+ dogWlakerId,
+          query: { price: this.dogwalker.paymentAmount }
+        });  
       }
+      
+
     },
 
     props: ['dogwalker']
